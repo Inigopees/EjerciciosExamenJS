@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+ <html lang="es">
+ <head>
+   <title>LocalStorage</title>
+   <link rel="stylesheet" type="text/css" href="css.css">
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script src="js/jquery.translate.js"></script>
+   <script type="text/javascript" src="js/Diccionario.js"></script>
+ </head>
+ <body id="yoda" onload="cambiarIdioma(localStorage.getItem('lang'))">
+  	<div id="berde" class="contenido yoda">
+  		<h2>Yoda</h2>
+  		<ul>
+  			<li>
+      		<p class="trn" data-trn-key="Y2">El miedo es el camino hacia el lado oscuro. El miedo lleva a la ira, la ira lleva al odio, el odio lleva al sufrimiento. Percibo mucho miedo en ti.</p>
+      	</li>
+    		<li>
+    			<p class="trn" data-trn-key="Y4">Miedo, ira, agresividad, el lado oscuro ellos son. Si algún día rigen tu vida, para siempre tu destino dominarán.</p>
+    		</li>
+    		<li>
+    			<p class="trn" data-trn-key="Y6">Siempre ha de haber dos, ni más ni menos. Un maestro y un aprendiz.</p>
+    		</li>
+  			<li>
+  				<p class="trn" data-trn-key="Y1">Entrénate a ti mismo para dejar ir todo aquello que temes perder.</p>
+  			</li>
+    		<li>
+    			<p class="trn" data-trn-key="Y3">¡Tú siempre con tus «no puede hacerse»! ¿Es que escuchándome no estabas?.</p>
+    		</li>
+    		<li>
+    			<p class="trn" data-trn-key="Y5">El miedo a la pérdida un camino hacia el lado oscuro es.</p>
+    		</li>
+    		<li>
+    			<p class="trn" data-trn-key="Y7">Siempre en movimiento está el futuro.</p>
+    		</li>
+    		<li>
+    			<p class="trn" data-trn-key="Y8">No lo intentes. Hazlo o no lo hagas. Pero no lo intentes.</p>
+    		</li>
+      	</ul>
+    </div>
+  <div class="container">
+    <div id="menuP1" class="botones">
+      <h4 class="trn" data-trn-key="Paginas">Paginas:</h4>
+      <button onclick="location.href='index.html'" class="trn" data-trn-key="Inicio">Inicio</button>
+      <button onclick="location.href='pagina2.html'">Obi-Wan Kenobi</button>
+      <button onclick="location.href='pagina3.html'">Palpatin</button>
+
+      <div class="idiomas">
+        <h4 class="trn" data-trn-key="Idiomas">Idiomas:</h4>
+        <button onclick="cambiarIdioma('eu')">Euskera</button>
+        <button onclick="cambiarIdioma('es')">Español</button>
+        <button onclick="cambiarIdioma('en')">Ingles</button>
+      </div>
+    </div>
+  </div>
+ </body>
+ </html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+ <html lang="es">
+ <head>
+   <title>LocalStorage</title>
+   <link rel="stylesheet" type="text/css" href="css.css">
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script src="js/jquery.translate.js"></script>
+   <script type="text/javascript" src="js/Diccionario.js"></script>
+ </head>
+ <body id="Palpatine" onload="cambiarIdioma(localStorage.getItem('lang'))">
+  	<div id="rosa" class="contenido">
+      <h2>Palpatin</h2>
+  		<ul>
+  			<li>
+  				<p class="trn" data-trn-key="P1">Tu débil e inútil destreza, no se compara con el poder del ‘Lado Oscuro’… has pagado el precio por no tener visión. </p>
+  			</li>
+  			<li>
+      			<p class="trn" data-trn-key="P2">Si uno quiere saber el gran misterio de la fuerza, la debe estudiar desde todos sus lados.</p>
+      		</li>
+      		<li>
+      			<p class="trn" data-trn-key="P3">Tu presunción es tu debilidad. – Tu fe en tus amigos es la tuya.</p>
+      		</li>
+      		<li>
+      			<p class="trn" data-trn-key="P4"> Estás completando tu destino, Anakin.</p>
+      		</li>
+      		<li>
+      			<p class="trn" data-trn-key="P5">Consigan ayuda! Deben consegir ayuda. ¡Ninguno de ustedes puede con un Señor Sith.</p>
+      		</li>
+      	</ul>
+    </div>
+  	<div  class="container">
+	  	<div id="menuP3" class="botones">
+	  		<h4 class="trn" data-trn-key="Paginas">Paginas:</h4>
+		    <button onclick="location.href='index.html'">Inicio</button>
+		   	<button onclick="location.href='pagina1.html'">Yoda</button>
+		    <button onclick="location.href='pagina2.html'">Obi-Wan Kenobi</button>
+
+		  	<div class="idiomas">
+	        	<h4 class="trn" data-trn-key="Idiomas">Idiomas:</h4>
+	        	<button onclick="cambiarIdioma('eu')">Euskera</button>
+	        	<button onclick="cambiarIdioma('es')">Español</button>
+	        	<button onclick="cambiarIdioma('en')">Ingles</button>
+	      	</div>
+	  	</div>
+	</div>
+ </body>
+ </html>

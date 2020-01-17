@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>AJAX</title>
+		<link rel="stylesheet" type="text/css" href="estilo/css.css">
+		<script src="JQ/jquery-3.4.1.min.js"></script>
+		<script>
+			function SegundoBoton(numero,lista,datos){
+				var DatosArray = [numero,lista,datos]; //Creamos array con los datos recibidos del cliente
+				var Link = 'https://swapi.co/api/'+DatosArray[1]+'/'+DatosArray[0]; //creamos el link entero con los datos
+				$('#Respuesta').html(""); //vaciamos el div de resultado
+				$.get(Link,function(data,status){ //Hacemos la llamada  y recogemos los datos y el estado de la llamada
+					$.each(data,function(key,value){ //Recorremos los datos del objeto
+						if(typeof(value) ==='array' || typeof(value) ==='object'){ //comparamos si es objeto o array
+							$('#Respuesta').append('<b>'+key+' : </b><br>'); //si da positivo imprimimos el indice
+							$.each(value,function(key2,value2){ //recorremos el nuevo objeto
+								$('#Respuesta').append(value2+'<br>'); //imprimimos el nuevo dato del objeto
+							});
+						}else{ //imprimimos valor del objeto principal
+							$('#Respuesta').append('<b>'+key+' : </b>'+value+'<br>');
+						};
+						$('#Respuesta').append('<hr>');
+					});	
+				});
+			};
+
+			function CuartoBoton(lista,datos){
+				var DatosArray = [lista,datos]; //Creamos array con los datos recibidos del cliente
+				let jsonDatos = '"{"'+DatosArray[0]+'":"'+DatosArray[1]+'"}"';
+				$.post('https://my-json-server.typicode.com/typicode/demo/posts', jsonDatos, function(data, status) {
+      				if (status === 'success') {
+        				console.log(status);
+        				alert('Los datos se han enviado correctamente.');
+      				} else {
+        				console.log(status);
+        				alert('Error en el envio de datos.');
+      				}
+    			});
+			};
+		</script>
+	</head>
+	<body>
+		<div id="Formulario">
+			<form action="index.html" method="post">
+				<label>Numero : <input type="number" id="numero" name="numero"></label>
+				<lable>Que quieres buscar?</lable>
+				<select name="lista" id="lista">
+					<option value="people">People</option>
+					<option value="planets">Planets</option>
+					<option value="starships">Starships</option>
+				</select>
+				<label>Datos : <input type="text" id="datos" name="datos"></label><br><br>
+			</form>
+				<button onclick="validacion(1)">Buscar datos con JS</button>
+				<button onclick="validacion(2)">Buscar datos con JQ</button>
+				<button onclick="validacion(3)">Enviar datos con JS</button>
+				<button onclick="validacion(4)">Enviar datos con JQ</button>
+		</div>
+		<div id="Respuesta">
+
+		</div>
+		<script type="text/javascript">
+
+			function validacion(boton){
+				var botonpulsado=boton; //recogemos el valor del boton cual pulsamos
+				var Numero = document.getElementById('numero').value; //recogemos valor del cliente
+				var Lista = document.getElementById('lista').value; //recogemos valor del cliente
+				var Datos = document.getElementById('datos').value; //recogemos valor del cliente
+				if(/[0-9]/.test(Numero) && (Numero%1) == 0 && Numero != null){ //verificamos que inserta un numero
+					if(Lista == 'people' || Lista == 'planets' || Lista == 'starships'){ //verificamos que la lista es la nuestra
+						if(/[A-Za-z]/.test(Datos)){ //verificamos que mete un string de solo letras en datos
+							switch(botonpulsado){
+								case 1: //si pulsa el boton 1 llamamos a la funcion PrimerBoton y le mandamos los datos como parametros
+									PrimerBoton(Numero,Lista,Datos);
+								break;
+								case 2: //si pulsa el boton 2 llamamos a la funcion SegundoBoton y le mandamos los datos como parametros
+									SegundoBoton(Numero,Lista,Datos);
+								break;
+								case 3:
+									TercerBoton(Lista,Datos);
+								break;
+								case 4:
+									CuartoBoton(Lista,Datos);
+								break;
+							}
+						}//Error de insercion de datos
+						else{
+							alert('Datos no validos, inserte texto en Datos');
+						}
+					}//Error de isercion de lista
+					else{
+						alert('No intentes cambiar los valores de la lista');
+					}
+				}//Error de insercion de numero
+				else{
+					alert('Inserte numeros enteros, no lo deje vacio');
+				}
+			}
+
+			function PrimerBoton(numero,lista,datos){
+				document.getElementById('Respuesta').innerHTML=""; //vaciamos el div donde mostraremos la respuesta
+				var DatosArray = [numero,lista,datos]; //creamos un array con los datos recibidos para crear el link
+				var Link = 'https://swapi.co/api/'+DatosArray[1]+'/'+DatosArray[0]; //Creamos el link de la llamada
+				var request = new XMLHttpRequest();
+				request.open('Get',Link,true); //hacemos la llamada get de la api con el link anteriormente creado
+				request.onload = function(){
+					var data = JSON.parse(this.response); //data es el contenido recibido de la api
+					if(request.status >= 200 && request.status < 400){ // si la llamada no nos da error entrara dentro del if
+						if(typeof data === 'object' || Array.isArray(data)){ //Miramos si lo recibido es un objeto u array
+							for(let x in data){ //como lo recibido a dado positivo arriba entra dentro y recorre el objet
+								if(typeof data[x] === 'object' || Array.isArray(data[x])){ //hacemos la misma comparacion pero de un objeto del objeto
+									for(let y in data[x]){ //recorremos este objeto
+										if(y == 0){ //imprimimos el contenido del objeto dentro del objeto
+											document.getElementById('Respuesta').innerHTML+='<b>'+x+'</b> : <li>'+data[x][y]+'</li><br>';
+										}
+										else{
+											document.getElementById('Respuesta').innerHTML+='<li>'+data[x][y]+'</li><br>';
+										}
+									}
+								}else{ //imprimimos el primer objeto
+									document.getElementById('Respuesta').innerHTML+='<b>'+x+'</b> : '+data[x]+'<br>';
+								}
+								document.getElementById('Respuesta').innerHTML+='<hr>';
+							}	
+						} //si lo primero que recibimos no es objeto lo imprime
+						else{
+							document.getElementById('Respuesta').innerHTML+='<b>'+x+'</b> : '+data+'<br>';
+						}
+					} //si la llamada nos devuelve errores nos saldra este mensaje.
+					else{ 
+						alert('error');
+					}
+				}
+				request.send();	//ejecutamos la llamada anteriormente creada
+			};
+
+			function TercerBoton(lista,datos){
+				var DatosArray = [lista,datos]; //Creamos array con los datos recibidos del cliente
+				var jsonDatos = DatosArray[0]+'='+DatosArray[1]; //creamos el json con los datos
+				
+				var request = new XMLHttpRequest(); // 
+    			var url ='https://my-json-server.typicode.com/typicode/demo/posts'; // el link donde haremos el post
+
+    			request.open('POST',url,true);
+    			request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    			request.send(jsonDatos);
+
+    			request.onreadystatechange = function(){
+    				if(request.readyState == 4 && request.status == 200){
+    					console.log(request.responseText);
+    					console.log(request.status);
+    					alert(request.responseText);
+    				}
+    				else
+    				{
+    					console.log(request.status);
+    					console.log(request.responseText);
+    					alert('Error en el envio de datos');
+    				}
+    			}
+			}
+		</script>
+
+	</body>
+</html>	

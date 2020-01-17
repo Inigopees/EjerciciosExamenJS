@@ -1,0 +1,90 @@
+#inicio{
+	background-image: url(img/StarWars.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+#menuIn{
+	border-radius: 5% 5% 5% 5%;
+	background-color: rgb(8, 122, 251,0.2);
+	padding-bottom: 2%;
+}
+
+#oscuro{
+	color:red;
+}
+
+#luz{
+	color: blue;
+}
+
+.titulo{
+	text-align: center;
+}
+
+.botones{
+	width: 25%;
+	float:left;
+}
+
+.contenido{
+	width: 75%;
+	float: left;
+}
+
+.contenido h2{
+	text-align: center;
+}
+
+.container{
+	text-align: center;
+}
+
+#menuP1{
+	border-radius: 5% 5% 5% 5%;
+	background-color: rgb(0, 180, 0,0.2);
+	color:rgb(0,180,0);
+	padding-bottom: 2%;
+}
+
+#yoda{
+	background-image: url(img/Yoda.jpg);
+	background-size: cover;
+}
+
+#berde{
+	color:rgb(0, 200, 0);
+}
+
+#Palpatine{
+	background-image: url(img/palpatine.jpg);
+	background-size: cover;
+}
+
+#menuP3{
+	border-radius: 5% 5% 5% 5%;
+	background-color: rgb(190, 0, 223,0.2);
+	color:rgb( 216, 0, 255 );
+	padding-bottom: 2%;
+}
+
+#rosa{
+	color:rgb( 216, 0, 255 );
+}
+
+#obiWan{
+	background-image: url(img/obiwan.jpg);
+	background-size: cover;
+}
+
+#menuP2{
+	border-radius: 5% 5% 5% 5%;
+	background-color: rgb(39, 140, 255,0.2);
+	color:rgb( 39, 140, 255 );
+	padding-bottom: 2%;
+}
+
+#azul{
+	float: left;
+	color:rgb( 39, 140, 255 );
+}

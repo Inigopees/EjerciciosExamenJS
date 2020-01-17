@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+ <html lang="es">
+ <head>
+   <title>LocalStorage</title>
+   <link rel="stylesheet" type="text/css" href="css.css">
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script src="js/jquery.translate.js"></script>
+   <script type="text/javascript" src="js/Diccionario.js"></script>
+ </head>
+ <body id="obiWan" onload="cambiarIdioma(localStorage.getItem('lang'))">
+  	<div id="azul" class="contenido">
+      <h2>Obi-Wan Kenobi</h2>
+  		<ul>
+  			<li>
+  				<p class="trn" data-trn-key="OW1">¿Quién es más loco, el loco o el loco que sigue al loco?.</p>
+  			</li>
+  			<li>
+      			<p class="trn" data-trn-key="OW2">La fuerza es lo que le da al Jedi su poder, es un campo de energía creado por todas las cosas vivientes, nos rodea, penetra en nosotros y mantiene unida a la galaxia.</p>
+      		</li>
+      		<li>
+      			<p class="trn" data-trn-key="OW4">¿Por qué será, mi padawan, que cada vez que me rescatas, acabas al final necesitando rescatarte a ti mismo?</p>
+      		</li>
+      		<li>
+      			<p class="trn" data-trn-key="OW5">Si dedicaras tanto tiempo a la espada como a tu ingenio estarías a la altura del maestro Yoda como espadachín.</p>
+      		</li>
+      		<li>
+      			<p class="trn" data-trn-key="OW3">Tus ojos pueden engañarte, no confíes en ellos.</p>
+      		</li>
+      	</ul>
+    </div>
+  </div>
+    <div class="container">
+    <div id="menuP2" class="botones">
+      <h4 class="trn" data-trn-key="Paginas">Paginas:</h4>
+      <button onclick="location.href='index.html'">Inicio</button>
+    <button onclick="location.href='pagina1.html'">Yoda</button>
+      <button onclick="location.href='pagina3.html'">Palpatin</button>
+
+      <div class="idiomas">
+        <h4 class="trn" data-trn-key="Idiomas">Idiomas:</h4>
+        <button onclick="cambiarIdioma('eu')">Euskera</button>
+        <button onclick="cambiarIdioma('es')">Español</button>
+        <button onclick="cambiarIdioma('en')">Ingles</button>
+      </div>
+
+    </div>
+  </div>
+ </body>
+ </html>
